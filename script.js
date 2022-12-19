@@ -12,21 +12,20 @@ form.addEventListener('submit', (event) => {
 		const formData = new FormData();
 		formData.append('latitude', latitude);
 		formData.append('longitude', longitude);
-		formData.append('image', imageEl.files[0]);
-    console.log(formData.get('image'));
+		formData.append('file', imageEl.files[0]);
+    console.log(formData.get('file'));
     console.log(formData.get('latitude'));
     console.log(formData.get('longitude'));
 
-    //TODO: Uncomment following code block to actually send data to the server
-		// fetch('/upload', {
-		// 	method: 'POST',
-		// 	body: formData,
-		// })
-		// 	.then((response) => {
-		// 		console.log(response);
-		// 	})
-		// 	.catch((error) => {
-		// 		console.error(error);
-		// 	});
+		fetch('http://localhost:3000/upload', {
+			method: 'POST',
+			body: formData,
+		})
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	});
 });
